@@ -3,8 +3,8 @@ Changes
 MANIFEST
 COPYING
 Makefile.PL
-XS.pm
-XS.xs
+Stable.pm
+Stable.xs
 XS/Boolean.pm
 bin/json_xs
 eg/bench

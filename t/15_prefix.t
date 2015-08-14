@@ -1,8 +1,8 @@
 BEGIN { $| = 1; print "1..4\n"; }
 
-use JSON::XS;
+use JSON::XS::Stable;
 
-my $xs = JSON::XS->new->latin1->allow_nonref;
+my $xs = JSON::XS::Stable->new->latin1->allow_nonref;
 
 eval { $xs->decode ("[] ") };
 print $@ ? "not " : "", "ok 1\n";

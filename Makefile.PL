@@ -8,8 +8,8 @@ WriteMakefile(
 	             SUFFIX	=> '.gz',
 	            },
     EXE_FILES    => [ "bin/json_xs" ],
-    VERSION_FROM => "XS.pm",
-    NAME         => "JSON::XS",
+    VERSION_FROM => "Stable.pm",
+    NAME         => "JSON::XS::Stable",
     PREREQ_PM    => {
        common::sense     => 0,
        Types::Serialiser => 0,

@@ -4,11 +4,11 @@ use Test::More;
 
 use strict;
 BEGIN { plan tests => 20 };
-use JSON::XS;
+use JSON::XS::Stable;
 
 my ($js,$obj);
 
-my $pc = new JSON::XS;
+my $pc = new JSON::XS::Stable;
 
 $js  = q|{}|;
 

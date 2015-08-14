@@ -8,12 +8,12 @@ use Test::More;
 use strict;
 use utf8;
 BEGIN { plan tests => 17 };
-use JSON::XS;
+use JSON::XS::Stable;
 
 #########################
 my ($js,$obj,$str);
 
-my $pc = new JSON::XS;
+my $pc = new JSON::XS::Stable;
 
 $obj = {test => qq|abc"def|};
 $str = $pc->encode($obj);

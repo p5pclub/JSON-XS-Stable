@@ -5,14 +5,14 @@
 use strict;
 use warnings;
 
-use JSON::XS;
+use JSON::XS::Stable;
 
 print "1..1\n";
 
 my $data = ["\x{53f0}\x{6240}\x{306e}\x{6d41}\x{3057}",
             "\x{6c60}\x{306e}\x{30ab}\x{30a8}\x{30eb}"];
-my $js = JSON::XS->new->encode ($data);
-my $j = new JSON::XS;
+my $js = JSON::XS::Stable->new->encode ($data);
+my $j = new JSON::XS::Stable;
 my $object = $j->incr_parse ($js);
 
 die "no object" if !$object;

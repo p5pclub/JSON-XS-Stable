@@ -1,6 +1,6 @@
 BEGIN { $| = 1; print "1..2\n"; }
 
-use JSON::XS;
+use JSON::XS::Stable;
 use Tie::Hash;
 use Tie::Array;
 
@@ -9,7 +9,7 @@ sub ok($;$) {
    print $_[0] ? "" : "not ", "ok ", ++$test, "\n";
 }
 
-my $js = JSON::XS->new;
+my $js = JSON::XS::Stable->new;
 
 tie my %h, 'Tie::StdHash';
 %h = (a => 1);

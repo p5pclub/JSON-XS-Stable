@@ -99,7 +99,7 @@ stuff). Or you can combine those features in whatever way you like.
 
 =cut
 
-package JSON::XS;
+package JSON::XS::Stable;
 
 use common::sense;
 
@@ -1612,7 +1612,7 @@ BEGIN {
    *JSON::XS::Boolean:: = *Types::Serialiser::Boolean::;
 }
 
-XSLoader::load "JSON::XS", $VERSION;
+XSLoader::load "JSON::XS::Stable", $VERSION;
 
 =head1 SEE ALSO
 

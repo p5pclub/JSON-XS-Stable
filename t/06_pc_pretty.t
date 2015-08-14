@@ -6,10 +6,10 @@ use strict;
 use Test::More;
 BEGIN { plan tests => 9 };
 
-use JSON::XS;
+use JSON::XS::Stable;
 
 my ($js,$obj,$json);
-my $pc = new JSON::XS;
+my $pc = new JSON::XS::Stable;
 
 $obj = {foo => "bar"};
 $js = $pc->encode($obj);

@@ -13,11 +13,11 @@ use Test;
 {
     BEGIN { plan tests => 7 }
 
-    use JSON::XS;
+    use JSON::XS::Stable;
 
     my $json_str = '{"var1":"val1","var2":["first_element",{"sub_element":"sub_val","sub_element2":"sub_val2"}],"var3":"val3"}';
 
-    my $json_obj = JSON::XS->new->allow_nonref(1);
+    my $json_obj = JSON::XS::Stable->new->allow_nonref(1);
     my $data = $json_obj->decode($json_str);
 
     my $pass = 1;

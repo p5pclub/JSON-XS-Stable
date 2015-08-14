@@ -1,6 +1,6 @@
 BEGIN { $| = 1; print "1..11\n"; }
 
-use JSON::XS;
+use JSON::XS::Stable;
 
 our $test;
 sub ok($;$) {
@@ -9,7 +9,7 @@ sub ok($;$) {
 
 my $def = 512;
 
-my $js = JSON::XS->new;
+my $js = JSON::XS::Stable->new;
 
 ok (!eval { $js->decode (("[" x ($def + 1)) . ("]" x ($def + 1))) });
 ok (ref $js->decode (("[" x $def) . ("]" x $def)));

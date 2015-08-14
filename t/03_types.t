@@ -2,38 +2,38 @@ BEGIN { $| = 1; print "1..76\n"; }
 
 use utf8;
 use Types::Serialiser;
-use JSON::XS;
+use JSON::XS::Stable;
 
 our $test;
 sub ok($) {
    print $_[0] ? "" : "not ", "ok ", ++$test, "\n";
 }
 
-ok (!defined JSON::XS->new->allow_nonref (1)->decode ('null'));
-ok (JSON::XS->new->allow_nonref (1)->decode ('true') == 1);
-ok (JSON::XS->new->allow_nonref (1)->decode ('false') == 0);
+ok (!defined JSON::XS::Stable->new->allow_nonref (1)->decode ('null'));
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('true') == 1);
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('false') == 0);
 
-my $true  = JSON::XS->new->allow_nonref (1)->decode ('true');
+my $true  = JSON::XS::Stable->new->allow_nonref (1)->decode ('true');
 ok ($true eq 1);
 ok (Types::Serialiser::is_bool $true);
-my $false = JSON::XS->new->allow_nonref (1)->decode ('false');
+my $false = JSON::XS::Stable->new->allow_nonref (1)->decode ('false');
 ok ($false == !$true);
 ok (Types::Serialiser::is_bool $false);
 ok (++$false == 1);
 ok (!Types::Serialiser::is_bool $false);
 
-ok (JSON::XS->new->allow_nonref (1)->decode ('5') == 5);
-ok (JSON::XS->new->allow_nonref (1)->decode ('-5') == -5);
-ok (JSON::XS->new->allow_nonref (1)->decode ('5e1') == 50);
-ok (JSON::XS->new->allow_nonref (1)->decode ('-333e+0') == -333);
-ok (JSON::XS->new->allow_nonref (1)->decode ('2.5') == 2.5);
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('5') == 5);
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('-5') == -5);
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('5e1') == 50);
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('-333e+0') == -333);
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('2.5') == 2.5);
 
-ok (JSON::XS->new->allow_nonref (1)->decode ('""') eq "");
+ok (JSON::XS::Stable->new->allow_nonref (1)->decode ('""') eq "");
 ok ('[1,2,3,4]' eq encode_json decode_json ('[1,2, 3,4]'));
 ok ('[{},[],[],{}]' eq encode_json decode_json ('[{},[], [ ] ,{ }]'));
 ok ('[{"1":[5]}]' eq encode_json [{1 => [5]}]);
-ok ('{"1":2,"3":4}' eq JSON::XS->new->canonical (1)->encode (decode_json '{ "1" : 2, "3" : 4 }'));
-ok ('{"1":2,"3":1.2}' eq JSON::XS->new->canonical (1)->encode (decode_json '{ "1" : 2, "3" : 1.2 }'));
+ok ('{"1":2,"3":4}' eq JSON::XS::Stable->new->canonical (1)->encode (decode_json '{ "1" : 2, "3" : 4 }'));
+ok ('{"1":2,"3":1.2}' eq JSON::XS::Stable->new->canonical (1)->encode (decode_json '{ "1" : 2, "3" : 1.2 }'));
 
 ok ('[true]'  eq encode_json [Types::Serialiser::true]);
 ok ('[false]' eq encode_json [Types::Serialiser::false]);

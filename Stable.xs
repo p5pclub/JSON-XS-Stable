@@ -80,7 +80,7 @@
 
 #ifdef USE_ITHREADS
 # define JSON_SLOW 1
-# define JSON_STASH (json_stash ? json_stash : gv_stashpv ("JSON::XS", 1))
+# define JSON_STASH (json_stash ? json_stash : gv_stashpv ("JSON::XS::Stable", 1))
 #else
 # define JSON_SLOW 0
 # define JSON_STASH json_stash
@@ -1905,7 +1905,7 @@ interrupt:
 /////////////////////////////////////////////////////////////////////////////
 // XS interface functions
 
-MODULE = JSON::XS		PACKAGE = JSON::XS
+MODULE = JSON::XS::Stable		PACKAGE = JSON::XS::Stable
 
 BOOT:
 {
@@ -1918,7 +1918,7 @@ BOOT:
             : i >= 'A' && i <= 'F' ? i - 'A' + 10
             : -1;
 
-	json_stash          = gv_stashpv ("JSON::XS"                  , 1);
+	json_stash          = gv_stashpv ("JSON::XS::Stable"                  , 1);
 	types_boolean_stash = gv_stashpv ("Types::Serialiser::Boolean", 1);
 
         types_true  = get_bool ("Types::Serialiser::true");
@@ -1927,7 +1927,7 @@ BOOT:
         sv_json = newSVpv ("JSON", 0);
         SvREADONLY_on (sv_json);
 
-        CvNODEBUG_on (get_cv ("JSON::XS::incr_text", 0)); /* the debugger completely breaks lvalue subs */
+        CvNODEBUG_on (get_cv ("JSON::XS::Stable::incr_text", 0)); /* the debugger completely breaks lvalue subs */
 }
 
 PROTOTYPES: DISABLE
@@ -1945,7 +1945,7 @@ void new (char *klass)
         json_init ((JSON *)SvPVX (pv));
         XPUSHs (sv_2mortal (sv_bless (
            newRV_noinc (pv),
-           strEQ (klass, "JSON::XS") ? JSON_STASH : gv_stashpv (klass, 1)
+           strEQ (klass, "JSON::XS::Stable") ? JSON_STASH : gv_stashpv (klass, 1)
         )));
 }
 

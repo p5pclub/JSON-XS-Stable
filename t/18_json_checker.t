@@ -8,10 +8,10 @@ no warnings;
 use Test::More;
 BEGIN { plan tests => 39 };
 
-use JSON::XS;
+use JSON::XS::Stable;
 
 # emulate JSON_checker default config
-my $json = JSON::XS->new->utf8->max_depth(32)->canonical;
+my $json = JSON::XS::Stable->new->utf8->max_depth(32)->canonical;
 
 binmode DATA;
 
